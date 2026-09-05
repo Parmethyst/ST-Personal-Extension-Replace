@@ -1,10 +1,12 @@
 import { extension_settings, loadExtensionSettings } from '../../../extensions.js';
 import { chat, saveChat } from '../../../../script.js';
 
-const MODULE_NAME = 'st-find-replace';
+const extensionName = "ST-Personal-Extension-Replace";
+const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
+
 
 jQuery(async () => {
-    await loadExtensionSettings(MODULE_NAME);
+    await loadExtensionSettings(extensionName);
 
     // This is an example of loading HTML from a file
     const settingsHtml = await $.get(`${extensionFolderPath}/example.html`);

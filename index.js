@@ -6,6 +6,7 @@ const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
 
 
 jQuery(async () => {
+    if ($("#my-extension-panel").length > 0) return;
     // This is an example of loading HTML from a file
     const settingsHtml = await $.get(`${extensionFolderPath}/example.html`);
 

@@ -11,46 +11,46 @@ jQuery(async () => {
 
     $('#extensions_settings').append(settingsHtml);
 
-    // $('#st-fr-execute').on('click', () => {
-    //     const target = $('#st-fr-target').val();
-    //     const replacement = $('#st-fr-replacement').val();
+    $('#st-fr-execute').on('click', () => {
+        const target = $('#st-fr-target').val();
+        const replacement = $('#st-fr-replacement').val();
 
-    //     if (!target) {
-    //         toastr.error('Please enter text to find.', 'Find & Replace');
-    //         return;
-    //     }
+        if (!target) {
+            toastr.error('Please enter text to find.', 'Find & Replace');
+            return;
+        }
 
-    //     performFindAndReplace(target, replacement);
-    // });
+        performFindAndReplace(target, replacement);
+    });
 });
 
-// async function performFindAndReplace(target, replacement) {
-//     if (!chat || chat.length === 0) {
-//         toastr.warning('No active chat found.', 'Find & Replace');
-//         return;
-//     }
+async function performFindAndReplace(target, replacement) {
+    if (!chat || chat.length === 0) {
+        toastr.warning('No active chat found.', 'Find & Replace');
+        return;
+    }
 
-//     const lastIndex = chat.length - 1;
-//     const lastMessage = chat[lastIndex];
+    const lastIndex = chat.length - 1;
+    const lastMessage = chat[lastIndex];
 
-//     if (!lastMessage || !lastMessage.mes) {
-//         toastr.warning('The last message is empty.', 'Find & Replace');
-//         return;
-//     }
+    if (!lastMessage || !lastMessage.mes) {
+        toastr.warning('The last message is empty.', 'Find & Replace');
+        return;
+    }
 
-//     if (!lastMessage.mes.includes(target)) {
-//         toastr.info('Target string not found in the last message.', 'Find & Replace');
-//         return;
-//     }
+    if (!lastMessage.mes.includes(target)) {
+        toastr.info('Target string not found in the last message.', 'Find & Replace');
+        return;
+    }
 
-//     lastMessage.mes = lastMessage.mes.replaceAll(target, replacement);
+    lastMessage.mes = lastMessage.mes.replaceAll(target, replacement);
 
-//     await saveChat();
+    await saveChat();
 
-//     toastr.success('Last message updated successfully! Reloading view...', 'Find & Replace');
+    toastr.success('Last message updated successfully! Reloading view...', 'Find & Replace');
     
-//     // Refresh UI to display modification
-//     setTimeout(() => {
-//         window.location.reload();
-//     }, 1000);
-// }
+    // Refresh UI to display modification
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}

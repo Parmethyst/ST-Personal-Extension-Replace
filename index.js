@@ -43,14 +43,23 @@ async function performFindAndReplace(target, replacement) {
         return;
     }
 
+    // 1. Update the chat data model
     lastMessage.mes = lastMessage.mes.replaceAll(target, replacement);
 
+    // 2. Persist change to backend storage
     await saveChat();
 
-    toastr.success('Last message updated successfully! Reloading view...', 'Find & Replace');
+    // 3. Update the DOM visually without reloading the page
+    const $messageEl = $(`#chat .mes[mesid="${lastIndex}"]`);
     
-    // Refresh UI to display modification
-    setTimeout(() => {
-        window.location.reload();
-    }, 1000);
+    if ($messageEl.length) {
+        const $mesText = $messageEl.find('.mes_text');
+        
+        // Update the text content directly 
+        // Note: If your replacement text contains markdown, you may want to handle 
+        // markdown compilation, but for text-to-text swaps, updating text() or html() works.
+        $mesText.text(lastMessage.mes);
+    }
+
+    toastr.success('Last message updated successfully!', 'Find & Replace');
 }
